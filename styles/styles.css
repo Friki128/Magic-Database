@@ -1,96 +1,12 @@
-*{
-    margin: 0px;
-    padding: 0px;
-}
-
-td {
+.td {
     border: 1px solid #8888;
 }
 
-head {
-    background-color: lightseagreen;
-    height: 100px;
-    width: 100%;
-    margin: 0px;
-    border-bottom: 1px solid black;
-}
-
 body {
-    background-color: lightgray;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #9f6f3b;
     height: 100px;
     width: 100%;
-}
-
-#container {
-    /*width: 70%;*/
-    width: 1100px;
-    margin: 0px auto;
-    border: 1px solid black;
-}
-
-head {
-    background-color: red;
-    height: 100px;
-    width: 100%;
-    margin: 0px;
     text-align: center;
-    line-height: 100px;
-    color: white;
 }
 
-nav {
-    background-color: lightblue;
-    height: 50px;
-
-}
-
-nav ul li {
-    float: left;
-    list-style: none;
-    margin: 10px;
-    line-height: 30px;
-}
-
-.clearfix {
-    clear: both;
-}
-
-#content {
-    float: left;
-    width: calc(80% - 80px);
-    min-height: 500px;
-    background-color: green;
-}
-
-aside {
-    float: left;
-    width: calc(20% - 20px);
-    min-height: 500px;
-    background-color: orange;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 20px;
-}
-
-body {
-    color: white;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.article:first-child {
-    padding-top: 10px;
-    border-top: 1px solid #eee;
-}
-
-.article h2 {
-    font-size: 25px;
-
-}
-
-
-
-
+.title {}
