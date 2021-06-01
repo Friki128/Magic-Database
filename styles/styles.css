@@ -9,4 +9,16 @@ body {
     text-align: center;
 }
 
-.title {}
+.title {
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 100px;
+    width: 100%;
+}
+
+h1 {
+    background-color: #8d5d15d2;
+}
+
+.container {}
