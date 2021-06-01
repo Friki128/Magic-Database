@@ -10,10 +10,6 @@
 
 <body>
     <?php
-    echo "<p>" . $_POST["nombre_personaje"] . "</p>";
-    echo "<p>" . $_POST["descripcion"] . "</p>";
-    echo "<p>" . $_POST["historia"] . "</p>";
-    echo "<p>" . $_POST["plano"] . "</p>";
     $nombre_personajev = $_POST["nombre_personaje"];
     $descripcionv = $_POST["descripcion"];
     $historiav = $_POST["historia"];
@@ -25,7 +21,7 @@
     }
     else{
         $error=mysqli_error($bbdd);
-        header("Location:Fallo.php?error=$error");
+        header("Location:Fallo.php?error=".$error."");
     }
     ?>
 </body>

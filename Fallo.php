@@ -11,7 +11,7 @@
 <body>
     <h1>Error</h1>
    <?php
-   echo"Fallo inesperado";
+   echo $_GET["error"];
    ?>
 
 </body>

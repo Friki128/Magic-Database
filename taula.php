@@ -12,12 +12,12 @@
 <form action="taula.php" method="GET">
         <label>Tabla</label>
         <select name="tabla">
-            <option value=0>Autor</option>
+            <<option value=0>Autor</option>
             <option value=1>Bloque</option>
             <option value=2>Carta</option>
             <option value=3>Coleccion</option>
             <option value=4>Habilidad</option>
-            <!--<option value = 5>Ilustracion</option>-->
+            <option value = 5>Ilustracion</option>
             <option value=6>Personaje</option>
             <option value=7>Plano</option>
             <option value=8>Tipo</option>
@@ -40,9 +40,9 @@
             case 4:
                 $columnas = array("Habilidad","Nombre_Habilidad","Definicion");
                 break;
-                # case 5:
-                #    $columnas=array(array());
-                #   break;
+                case 5:
+                $columnas=array("Ilustracion","idIlustracion","");
+                break;
             case 6:
                 $columnas = array("Personaje","Nombre_Personaje","Descripcion","Historia","Nombre_Plano",0);
                 break;
@@ -58,27 +58,29 @@
         }
     }
     ?>
-<!--
-    </form>
-    <form action="taula.php" method="GET">
-        <label>Nombre</label>
-        <select name="filtro1">
-            <?php
-            #$query = "SELECT Nombre_Personaje FROM Personaje ORDER BY Nombre_Personaje";
-            #$result = mysqli_query($bbdd, $query);
-            #while ($row = mysqli_fetch_assoc($result)) {
-            #    echo "<option value = \"$row[Nombre_Personaje]\"> $row[Nombre_Personaje]</option>";
-            #}
-            #$Where = "";
-            #if (isset($_GET["filtro1"])) {
-             #   $Where = "WHERE Nombre_Personaje=\"$_GET[filtro1]\"";
-            #}
-            ?>
 
-        </select>
+    </form>
+    <?php
+   echo "<form action=\"taula.php?tabla=$_GET[tabla]\" method=\"POST\">";
+        echo "<label>Filtro</label>";
+       echo "<select name=\"filtro1\">";
+            
+            $query = "SELECT ".$columnas[1]." FROM ".$columnas[0]." ORDER BY ".$columnas[1].";";
+            $result = mysqli_query($bbdd, $query);
+            $columna=$columnas[1];
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value = \"$row[$columna]\"> $row[$columna]</option>";
+            }
+            $Where = "";
+            if (isset($_POST["filtro1"])) {
+               $Where = "WHERE ".$columna."=\"$_POST[filtro1]\"";
+            }
+            
+
+        echo "</select>";
+        ?>
         <button type="submit">Submit</button>
     </form>
-    -->
     <?php
     echo "<h1>".$columnas[0]."</h1>";
     ?>
@@ -90,6 +92,7 @@
             if (isset($columnas)){
             $control=0;
             echo "<th>Eliminar</th>";
+            echo "<th>Editar</th>";
                 foreach($columnas as $columna){
                     if (!$columna==0 && !$control==0){
                     echo "<th>". $columna ."</th>";
@@ -103,6 +106,7 @@
                     }
                 }
             }
+            
             ?>
             </tr>
         </thead>
@@ -111,14 +115,15 @@
             $query = "SELECT * FROM ".$columnas[0]." $Where ORDER BY  ".$columnas[1].";";
             $result = mysqli_query($bbdd, $query);
             while ($row = mysqli_fetch_assoc($result)) {
+                $control=0;
                 echo "<tr>";
                 echo "<td><a href=\"eliminarapi.php?id=".$columnas[0]."&Filtro=".$row[$columnas[1]]."\">Eliminar</a></td>";
+                echo "<td><a href=\"insertar_carta.php?id=".$columnas[0]."&Filtro=".$row[$columnas[1]]."\">Editar</a></td>";
                 foreach($columnas as $columna){
-                    if (!$columna==0){
-                        
+                    if (!$columna==0 && !$control==0){
                         echo "<td>".$row[$columna]."</td>";
                         }
-        
+                        $control=1;
 
         }
          echo "</tr>";
