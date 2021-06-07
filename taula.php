@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <title>Taula</title>
+    <title>Tablas</title>
+    <h1>Tablas</h1>
     <?php
     require "includes/head.php";
     ?>
@@ -12,12 +13,12 @@
 <form action="taula.php" method="GET">
         <label>Tabla</label>
         <select name="tabla">
-            <<option value=0>Autor</option>
+            <option value=0>Autor</option>
             <option value=1>Bloque</option>
             <option value=2>Carta</option>
             <option value=3>Coleccion</option>
             <option value=4>Habilidad</option>
-            <option value = 5>Ilustracion</option>
+            <option value=5>Ilustracion</option>
             <option value=6>Personaje</option>
             <option value=7>Plano</option>
             <option value=8>Tipo</option>
@@ -41,7 +42,7 @@
                 $columnas = array("Habilidad","Nombre_Habilidad","Definicion");
                 break;
                 case 5:
-                $columnas=array("Ilustracion","idIlustracion","");
+                $columnas=array("Ilustracion","idIlustracion","Fecha_Ilustracion","idAutor",0,"Nombre_Carta",0);
                 break;
             case 6:
                 $columnas = array("Personaje","Nombre_Personaje","Descripcion","Historia","Nombre_Plano",0);
@@ -95,8 +96,12 @@
             echo "<th>Editar</th>";
                 foreach($columnas as $columna){
                     if (!$columna==0 && !$control==0){
+                        if ($columna=="idIlustracion"){
+                        break;
+                        }
+                        else{
                     echo "<th>". $columna ."</th>";
-
+                        }
                     }
                     $control=1;
                     if ($columna==0){
@@ -121,8 +126,14 @@
                 echo "<td><a href=\"insertar_carta.php?id=".$columnas[0]."&Filtro=".$row[$columnas[1]]."\">Editar</a></td>";
                 foreach($columnas as $columna){
                     if (!$columna==0 && !$control==0){
+                        if ($columna=="idIlustracion"){
+                            echo "<td><img src=\"img/".$row[$columna].".jpeg\" height=\"200\"></img></td>";
+                        break;
+                        }
+                        else{
                         echo "<td>".$row[$columna]."</td>";
                         }
+                    }
                         $control=1;
 
         }

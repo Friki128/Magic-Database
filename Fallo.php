@@ -3,13 +3,13 @@
 
 <head>
     <title>Error</title>
+    <h1>Error</h1>
     <?php
     require "includes/head.php";
     ?>
 </head>
 
 <body>
-    <h1>Error</h1>
    <?php
    echo $_GET["error"];
    ?>

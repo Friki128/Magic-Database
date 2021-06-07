@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>Error</title>
+<title>Eliminar</title>
     <?php
     require "includes/head.php";
     ?>

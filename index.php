@@ -3,13 +3,14 @@
 
 <head>
     <title>Magic DB</title>
+    <h1>Magic DB</h1>
     <?php
     require "includes/head.php";
     ?>
 </head>
 
 <body>
-    <h1>Magic DB</h1>
+    
     <?php
     if (!$bbdd) {
         echo "Error";

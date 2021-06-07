@@ -3,6 +3,7 @@
 
 <head>
     <title>Insertar</title>
+    <h1>Insertar</h1>
     <?php
     require "includes/head.php";
     ?>
@@ -12,12 +13,12 @@
     <form action="insertar_carta.php" method="GET">
         <label>Tabla</label>
         <select name="tabla">
-            <!--<option value=0>Autor</option>-->
+            <option value=0>Autor</option>
             <option value=1>Bloque</option>
             <option value=2>Carta</option>
             <option value=3>Coleccion</option>
             <option value=4>Habilidad</option>
-            <!--<option value = 5>Ilustracion</option>-->
+            <option value=5>Ilustracion</option>
             <option value=6>Personaje</option>
             <option value=7>Plano</option>
             <option value=8>Tipo</option>
@@ -40,9 +41,9 @@
             case 4:
                 $columnas = array(4, array(0, "Nombre_Habilidad", "text", "30"), array(0, "Definicion", "text", "255"), array(2,"Coleccion","_Habilidad"));
                 break;
-                # case 5:
-                #    $columnas=array(array());
-                #   break;
+                case 5:
+                $columnas=array(4,array(0, "Fecha", "date", "30"), array(1,"Autor", "text", "30"), array(1, "Bloque", "text", "30"));
+                break;
             case 6:
                 $columnas = array(5, array(0, "Nombre_Personaje", "text", "30"), array(0, "Descripcion", "text", "255"), array(0, "Historia", "text", "255"), array(1, "Plano", "text", "30"));
                 break;
