@@ -4,9 +4,12 @@
 
 body {
     background-color: #9f6f3b;
-    height: 100px;
-    width: 100%;
-    text-align: center;
+    width: 800px;
+    padding: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .title {
@@ -18,7 +21,12 @@ body {
 }
 
 h1 {
-    background-color: #8d5d15d2;
+    background-color: #c79750f6;
+    color: black;
+}
+
+div {
+    margin: 15px 10px 15px 0px;
 }
 
 .container {}
