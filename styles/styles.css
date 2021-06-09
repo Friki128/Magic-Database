@@ -1,32 +1,53 @@
 .td {
-    border: 1px solid #8888;
+    font-family: 'slab serif font';
+}
+
+html {
+    font-family: 'slab serif font';
+    background: #4e290b;
+    font-size: medium;
 }
 
 body {
-    background-color: #9f6f3b;
+    background-color: #85501d;
     width: 800px;
     padding: 20px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 0;
-    margin-bottom: 0;
+    text-align: center;
+    margin: auto;
+    
 }
 
 .title {
-    background-color: black;
-    color: white;
+    background-color: #688183;
+    color: black;
     text-align: center;
     height: 100px;
     width: 100%;
 }
 
 h1 {
-    background-color: #c79750f6;
-    color: black;
+    background-color: #688183;
+    color: white;
+}
+
+#boton {
+    background-color: #ccc;
+    color: #fff;
+    width: 100px;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    }
+
+p {
+    font-family: 'slab serif font';
+    font-size: 14px;
+    color: #ccc;
 }
 
 div {
     margin: 15px 10px 15px 0px;
 }
 
-.container {}
+
+
