@@ -4,7 +4,7 @@
 
 html {
     font-family: 'slab serif font';
-    background: #4e290b;
+    color: black;
     font-size: medium;
 }
 
@@ -47,6 +47,15 @@ p {
 
 div {
     margin: 15px 10px 15px 0px;
+}
+
+table.form td:first-child label{
+    width: 100%;
+    text-align: right;
+}
+
+table.form input{
+    width: 100%;
 }
 
 
