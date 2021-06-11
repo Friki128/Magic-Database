@@ -1,3 +1,8 @@
+.container {
+    width: 1100px;
+    margin: 0px auto;
+}
+
 .td {
     font-family: 'slab serif font';
 }
@@ -43,6 +48,10 @@ p {
     font-family: 'slab serif font';
     font-size: 14px;
     color: #ccc;
+    width: 600px;
+    margin: 10px auto;
+    padding: 1100px;
+    font: normal 13px arial, helvetica, sans-serif;
 }
 
 div {
@@ -56,4 +65,13 @@ table.form td:first-child label{
 
 table.form input{
     width: 100%;
+}
+
+nav {
+    height: 50px;
+}
+
+#content {
+    float: left;
+    width: 80%;
 }
