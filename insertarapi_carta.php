@@ -40,21 +40,6 @@ for ($a = $b; $a < $columnas[0]; $a++) {
     $nombre_tablas=$nombre_tablas.$columnas[$a][1];
     $valores_tablas=$valores_tablas."\"".$_POST[$columnas[$a][1]]."\"";
 }
-if ($columnas[$a][1]=="Imagen"){
-    $query="SELECT idIlustracion FROM Ilustracion";
-    $results=mysqli_query($bbdd,$query);
-    while($row=mysqli_fetch_assoc($results)){
-        $file_newname=$row["idIlustracion"]+1;
-    }
-    $file=$_FILES['Imagen'];
-    $file_name=$file['name'];
-    $file_tmp=$file['tmp_name'];
-    $file_size=$file['size'];
-    $file_dest="/opt/lampp/htdocs/Magic_Final/img/".$file_newname.".jpg";
-    $file_error=$file['error'];
-    
-   $error=move_uploaded_file($file_tmp, $file_dest);
-}
 $f=true;
 if ($columnas[$a][1]==2){
     $f=false;
@@ -64,6 +49,21 @@ if ($columnas[$a][1]==2){
 $query = "INSERT INTO ".$_GET["tabla"]." ($nombre_tablas) VALUES ($valores_tablas);";
 $fail = mysqli_query($bbdd, $query);
 
+
+if ($columnas[2][1]=="Imagen"){
+    
+        $file_newname=mysqli_insert_id($bbdd);
+        
+    
+    $file=$_FILES['Imagen'];
+    $file_name=$file['name'];
+    $file_tmp=$file['tmp_name'];
+    $file_size=$file['size'];
+    $file_dest="/opt/lampp/htdocs/Magic_Final/img/".$file_newname.".jpg";
+    $file_error=$file['error'];
+    
+   move_uploaded_file($file_tmp, $file_dest);
+}
 if ($fail) {
     if($f){
   header("Location:Correcto.php");
@@ -71,7 +71,7 @@ if ($fail) {
    
 } else {
     $error = mysqli_error($bbdd);
-    header("Location:Fallo.php?error=".$error."");
+ header("Location:Fallo.php?error=".$error."");
 }
 
 for ($a = $b; $a < $columnas[0]; $a++) {
@@ -86,7 +86,7 @@ if ($columnas[$a][0]==2 && isset($columnas[$a][1])){
    }
    else{
     $error=mysqli_error($bbdd);
-    header("Location:Fallo.php?error=".$error."");
+   header("Location:Fallo.php?error=".$error."");
    }
 }
 }
