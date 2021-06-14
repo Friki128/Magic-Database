@@ -1,16 +1,15 @@
-.container {
-    width: 1100px;
-    margin: 0px auto;
-}
 
 .td {
     font-family: 'slab serif font';
 }
-
+.container {
+    width: 1100px;
+    margin: 0px auto;
+}
 html {
     font-family: 'slab serif font';
-    color: black;
-    font-size: medium;  
+    color: #000000;
+    font-size: medium;
 }
 
 body {
@@ -19,7 +18,7 @@ body {
     padding: 20px;
     text-align: center;
     margin: auto;
-    line-height: 30px;
+    border-style: 1px solid black;
 }
 
 .title {
@@ -31,8 +30,7 @@ body {
 }
 
 h1 {
-    background-color: #688183;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 #boton {
@@ -45,33 +43,30 @@ h1 {
     }
 
 p {
-    font-family: 'slab serif font';
-    font-size: 14px;
-    color: #ccc;
-    width: 600px;
-    margin: 10px auto;
-    padding: 1100px;
-    font: normal 13px arial, helvetica, sans-serif;
-}
+     width: 600px;
+     margin: 10px auto;
+     padding: 5px;
+     font: normal 13px arial, helvetica, sans-serif;
+ }
 
 div {
     margin: 15px 10px 15px 0px;
 }
 
-table.form td:first-child label{
-    width: 100%;
-    text-align: right;
+nav ul li{
+    list-style: none;
+    margin: 10px;
+    display: inline-block;
+}
+nav ul{
+    text-align: center;
+}
+.conborde{
+    border-collapse:collapse;
+    border:1px solid #000000;
+}
+        
+.conborde td{
+ border:1px solid #000000;
 }
 
-table.form input{
-    width: 100%;
-}
-
-nav {
-    height: 50px;
-}
-
-#content {
-    float: left;
-    width: 80%;
-}
