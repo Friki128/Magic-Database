@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
+<!-- Aquest es el document on arribas quan un proces no ha sigut executat amb exit -->
 
 <head>
     <title>Error</title>
-    <h1>Error</h1>
+    <div><img src="img/ERROR.png"></img></div>
     <?php
     require "includes/head.php";
     ?>
 </head>
 
 <body>
-   <?php
-   echo $_GET["error"];
-   ?>
+    <?php
+    #Mostram el error per pantalla que obtenem amb el metode GET
+    echo "<div>".$_GET["error"]."</div>";
+    ?>
 
 </body>
 

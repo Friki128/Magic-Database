@@ -3,146 +3,99 @@
 
 <head>
     <title>Tablas</title>
-    <h1>Tablas</h1>
+    <div><img src="img/TABLAS.png"></img></div>
     <?php
     require "includes/head.php";
     ?>
 </head>
 
 <body>
-<form action="taula.php" method="GET">
-        <label>Tabla</label>
-        <select name="tabla">
-            <option value=0>Autor</option>
-            <option value=1>Bloque</option>
-            <option value=2>Carta</option>
-            <option value=3>Coleccion</option>
-            <option value=4>Habilidad</option>
-            <option value=5>Ilustracion</option>
-            <option value=6>Personaje</option>
-            <option value=7>Plano</option>
-            <option value=8>Tipo</option>
-        </select>
-        <button type="submit">Elegir</button>
 
 
-        <?php
+    <?php
+    $THISURL = "taula.php";
+    require "includes/seleccion_tabla.php";
     if (isset($_GET["tabla"])) {
-        switch ($_GET["tabla"]) {
-            case 1:
-                $columnas = array("Bloque","Nombre_Bloque","Nombre_Plano",0);
-                break;
-            case 2:
-                $columnas = array("Carta","Nombre_Carta","Rareza","Subtipo","Coste","Definicion","Nombre_Personaje",0);
-                break;
-            case 3:
-                $columnas = array("Coleccion","Nombre_Coleccion","Fecha","Nombre_Bloque",0);
-                break;
-            case 4:
-                $columnas = array("Habilidad","Nombre_Habilidad","Definicion");
-                break;
-                case 5:
-                $columnas=array("Ilustracion","idIlustracion","Fecha_Ilustracion","idAutor",0,"Nombre_Carta",0);
-                break;
-            case 6:
-                $columnas = array("Personaje","Nombre_Personaje","Descripcion","Historia","Nombre_Plano",0);
-                break;
-            case 7:
-                $columnas = array("Plano","Nombre_Plano","Historia","Descripcion");
-                break;
-            case 8:
-                $columnas = array("Tipo","Nombre_Tipo","Definicion");
-                break;
-            default:
-                $columnas = array("Autor","idAutor","Nombre_Autor");
-                break;
-        }
+        $switchable = $_GET["tabla"];
+        require "includes/lista_tabla.php";
+    }
+    ?>
+    <?php
+    echo "<div><form action=\"taula.php?tabla=$_GET[tabla]\" method=\"POST\">";
+    echo "<label>Filtro</label>";
+    echo "<input type=\"text\" required name=\"filtro1\">";
+    ?>
+    <button type="submit">Submit</button>
+    </form></div>
+    <?php
+    $b=1;
+     if (isset($_GET["tabla"]) && $_GET["tabla"]=="Autor") {
+        $b=2;
+    }
+    $Where = "";
+    if (isset($_POST["filtro1"])) {
+        $Where = "WHERE " . $columnas[$b][1] . "=\"$_POST[filtro1]\"";
+    }
+    if (isset($_GET["tabla"])){
+    echo "<div><img src=\"img/" . $_GET["tabla"] . ".png\" height=\"40\"></img></div>";
     }
     ?>
 
-    </form>
-    <?php
-   echo "<form action=\"taula.php?tabla=$_GET[tabla]\" method=\"POST\">";
-        echo "<label>Filtro</label>";
-       echo "<select name=\"filtro1\">";
-            
-            $query = "SELECT ".$columnas[1]." FROM ".$columnas[0]." ORDER BY ".$columnas[1].";";
-            $result = mysqli_query($bbdd, $query);
-            $columna=$columnas[1];
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<option value = \"$row[$columna]\"> $row[$columna]</option>";
-            }
-            $Where = "";
-            if (isset($_POST["filtro1"])) {
-               $Where = "WHERE ".$columna."=\"$_POST[filtro1]\"";
-            }
-            
-
-        echo "</select>";
-        ?>
-        <button type="submit">Submit</button>
-    </form>
-    <?php
-    echo "<h1>".$columnas[0]."</h1>";
-    ?>
-    
-    <table>
+    <div><table class="conborde" align="center">
         <thead>
             <tr>
-            <?php
-            if (isset($columnas)){
-            $control=0;
-            echo "<th>Eliminar</th>";
-            echo "<th>Editar</th>";
-                foreach($columnas as $columna){
-                    if (!$columna==0 && !$control==0){
-                        if ($columna=="idIlustracion"){
-                        break;
+                <?php
+                if (isset($columnas)) {
+
+                    echo "<th>Eliminar</th>";
+                    echo "<th>Editar</th>";
+                    echo "<th>More</th>";
+                    for ($a = 1; $a < $columnas[0]; $a++) {
+                        if ($columnas[$a][0] != 2 && $columnas[$a][1] != "Historia") {
+                            
+                                echo "<th>" . $columnas[$a][1] . "</th>";
+                            if ($columnas[$a][0] == 1 && ($columnas[$a][1]=="Autor" || $columnas[$a][1]=="Ilustracion")){
+                                $columnas[$a][1]="fkid".$columnas[$a][1];
+                            }
+                            else if ($columnas[$a][0] == 1){
+                                $columnas[$a][1]="fkNombre_".$columnas[$a][1];
+                            }
                         }
-                        else{
-                    echo "<th>". $columna ."</th>";
-                        }
-                    }
-                    $control=1;
-                    if ($columna==0){
-                        $numero=(count($columnas));
-                        $numero-=2;
-                        $columnas[$numero]="fk".$columnas[$numero];
                     }
                 }
-            }
-            
-            ?>
+
+                ?>
             </tr>
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM ".$columnas[0]." $Where ORDER BY  ".$columnas[1].";";
+            $query = "SELECT * FROM " . $_GET["tabla"] . " $Where ORDER BY  " . $columnas[1][1] . ";";
             $result = mysqli_query($bbdd, $query);
             while ($row = mysqli_fetch_assoc($result)) {
-                $control=0;
+
+
                 echo "<tr>";
-                echo "<td><a href=\"eliminarapi.php?id=".$columnas[0]."&Filtro=".$row[$columnas[1]]."\">Eliminar</a></td>";
-                echo "<td><a href=\"insertar_carta.php?id=".$columnas[0]."&Filtro=".$row[$columnas[1]]."\">Editar</a></td>";
-                foreach($columnas as $columna){
-                    if (!$columna==0 && !$control==0){
-                        if ($columna=="idIlustracion"){
-                            echo "<td><img src=\"img/".$row[$columna].".jpeg\" height=\"200\"></img></td>";
-                        break;
-                        }
-                        else{
-                        echo "<td>".$row[$columna]."</td>";
+                echo "<td><a href=\"eliminarapi.php?id=" . $_GET["tabla"] . "&Filtro=" . $row[$columnas[1][1]] . "\"><img src=\"img/eliminar.png\" height=\"30\"></img></a></td>";
+                echo "<td><a href=\"insertar_carta.php?id=" . $_GET["tabla"] . "&Filtro=" . $row[$columnas[1][1]] . "\"><img src=\"img/editar.png\" height=\"30\"></img></a></td>";
+                echo "<td><a href=\"more.php?id=" . $_GET["tabla"] . "&Filtro=" . $row[$columnas[1][1]] . "\"><img src=\"img/see.png\" height=\"30\"></img></a></td>";
+                for ($a = 1; $a < $columnas[0]; $a++) {
+                    if ($columnas[$a][0] != 2) {
+                        if ($columnas[$a][1] == "Imagen") {
+
+                            echo "<td><img src=\"img/" . $row[$columnas[1][1]] . ".jpg\" height=\"200\"></img></td>";
+                        } else {
+                            if ($columnas[$a][1] != "Historia") {
+                                echo "<td>" . $row[$columnas[$a][1]] . "</td>";
+                            }
                         }
                     }
-                        $control=1;
-
-        }
-         echo "</tr>";
+                }
+                echo "</tr>";
             }
             ?>
         </tbody>
 
-    </table>
+    </table></div>
 </body>
 
 </html>

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
-
+<!-- Rickrolled -->
 <head>
     <title>Rickrolled</title>
-    <h1>Rickrolled</h1>
+    <div><img src="img/RICKROLLED.png"></img><div>
     <?php
     require "includes/head.php";
     ?>
 </head>
 
 <body>
-    
-    <video controls autoplay src="img/Rick Astley - Never Gonna Give You Up (Video).mp4"></video>
+    <div><video controls autoplay src="img/Rick Astley - Never Gonna Give You Up (Video).mp4"></video><div>
 </body>
 
 </html>

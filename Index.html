@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Prueba</title>
+<!-- Pagina principal del nostre projecte final -->
+<head>
+    <title>Magic DB</title>
+    <h1>Magic DB</h1>
+    <?php
+    require "includes/head.php";
+    ?>
+</head>
 
-    </head>
-    <body>
-        <h1>Boton XD</h1>
-        <button>XD</button>
-    </body>
+<body>
+
+    <?php
+    #En cas de que no puguesim conectar-nos a la nostra base de datos aquest condicional mostrara el error per pantalla.
+    if (!$bbdd) {
+        echo "Error";
+        print(mysqli_connect_error());
+    }
+    ?>
+<a>En Magic DB podemos insertar contenido a las tablas, editarlo, borrarlo, o visualizarlo.</a>
+
+</body>
+
 </html>
